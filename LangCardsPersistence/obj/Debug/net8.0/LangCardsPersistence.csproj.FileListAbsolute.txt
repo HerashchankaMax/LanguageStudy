@@ -1,0 +1,15 @@
+C:\Users\heras\RiderProjects\WebApplication1\LangCardsPersistence\obj\Debug\net8.0\LangCardsPersistence.csproj.AssemblyReference.cache
+C:\Users\heras\RiderProjects\WebApplication1\LangCardsPersistence\obj\Debug\net8.0\LangCardsPersistence.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\heras\RiderProjects\WebApplication1\LangCardsPersistence\obj\Debug\net8.0\LangCardsPersistence.AssemblyInfoInputs.cache
+C:\Users\heras\RiderProjects\WebApplication1\LangCardsPersistence\obj\Debug\net8.0\LangCardsPersistence.AssemblyInfo.cs
+C:\Users\heras\RiderProjects\WebApplication1\LangCardsPersistence\obj\Debug\net8.0\LangCardsPersistence.csproj.CoreCompileInputs.cache
+C:\Users\heras\RiderProjects\WebApplication1\LangCardsPersistence\bin\Debug\net8.0\LangCardsPersistence.deps.json
+C:\Users\heras\RiderProjects\WebApplication1\LangCardsPersistence\bin\Debug\net8.0\LangCardsPersistence.dll
+C:\Users\heras\RiderProjects\WebApplication1\LangCardsPersistence\bin\Debug\net8.0\LangCardsPersistence.pdb
+C:\Users\heras\RiderProjects\WebApplication1\LangCardsPersistence\bin\Debug\net8.0\LangCardsDomain.dll
+C:\Users\heras\RiderProjects\WebApplication1\LangCardsPersistence\bin\Debug\net8.0\LangCardsDomain.pdb
+C:\Users\heras\RiderProjects\WebApplication1\LangCardsPersistence\obj\Debug\net8.0\LangCard.8CDB28C5.Up2Date
+C:\Users\heras\RiderProjects\WebApplication1\LangCardsPersistence\obj\Debug\net8.0\LangCardsPersistence.dll
+C:\Users\heras\RiderProjects\WebApplication1\LangCardsPersistence\obj\Debug\net8.0\refint\LangCardsPersistence.dll
+C:\Users\heras\RiderProjects\WebApplication1\LangCardsPersistence\obj\Debug\net8.0\LangCardsPersistence.pdb
+C:\Users\heras\RiderProjects\WebApplication1\LangCardsPersistence\obj\Debug\net8.0\ref\LangCardsPersistence.dll

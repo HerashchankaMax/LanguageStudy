@@ -1,0 +1,11 @@
+C:\Users\heras\RiderProjects\WebApplication1\LangCardsDomain\bin\Debug\net8.0\LangCardsDomain.deps.json
+C:\Users\heras\RiderProjects\WebApplication1\LangCardsDomain\bin\Debug\net8.0\LangCardsDomain.dll
+C:\Users\heras\RiderProjects\WebApplication1\LangCardsDomain\bin\Debug\net8.0\LangCardsDomain.pdb
+C:\Users\heras\RiderProjects\WebApplication1\LangCardsDomain\obj\Debug\net8.0\LangCardsDomain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\heras\RiderProjects\WebApplication1\LangCardsDomain\obj\Debug\net8.0\LangCardsDomain.AssemblyInfoInputs.cache
+C:\Users\heras\RiderProjects\WebApplication1\LangCardsDomain\obj\Debug\net8.0\LangCardsDomain.AssemblyInfo.cs
+C:\Users\heras\RiderProjects\WebApplication1\LangCardsDomain\obj\Debug\net8.0\LangCardsDomain.csproj.CoreCompileInputs.cache
+C:\Users\heras\RiderProjects\WebApplication1\LangCardsDomain\obj\Debug\net8.0\LangCardsDomain.dll
+C:\Users\heras\RiderProjects\WebApplication1\LangCardsDomain\obj\Debug\net8.0\refint\LangCardsDomain.dll
+C:\Users\heras\RiderProjects\WebApplication1\LangCardsDomain\obj\Debug\net8.0\LangCardsDomain.pdb
+C:\Users\heras\RiderProjects\WebApplication1\LangCardsDomain\obj\Debug\net8.0\ref\LangCardsDomain.dll
