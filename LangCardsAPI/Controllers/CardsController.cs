@@ -41,7 +41,7 @@ public class CardsController : ControllerBase
         {
             return Ok(creationResult);
         }
-        return BadRequest(); 
+        return BadRequest("qq"); 
     }
     
     [HttpPut("{id}")]

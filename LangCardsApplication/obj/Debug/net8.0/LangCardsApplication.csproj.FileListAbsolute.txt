@@ -15,3 +15,4 @@ C:\Users\heras\RiderProjects\WebApplication1\LangCardsApplication\obj\Debug\net8
 C:\Users\heras\RiderProjects\WebApplication1\LangCardsApplication\obj\Debug\net8.0\refint\LangCardsApplication.dll
 C:\Users\heras\RiderProjects\WebApplication1\LangCardsApplication\obj\Debug\net8.0\LangCardsApplication.pdb
 C:\Users\heras\RiderProjects\WebApplication1\LangCardsApplication\obj\Debug\net8.0\ref\LangCardsApplication.dll
+C:\Users\heras\RiderProjects\WebApplication1\LangCardsApplication\obj\Debug\net8.0\LangCardsApplication.sourcelink.json

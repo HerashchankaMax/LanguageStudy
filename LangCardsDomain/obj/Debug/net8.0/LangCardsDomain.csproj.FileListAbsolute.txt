@@ -9,3 +9,5 @@ C:\Users\heras\RiderProjects\WebApplication1\LangCardsDomain\obj\Debug\net8.0\La
 C:\Users\heras\RiderProjects\WebApplication1\LangCardsDomain\obj\Debug\net8.0\refint\LangCardsDomain.dll
 C:\Users\heras\RiderProjects\WebApplication1\LangCardsDomain\obj\Debug\net8.0\LangCardsDomain.pdb
 C:\Users\heras\RiderProjects\WebApplication1\LangCardsDomain\obj\Debug\net8.0\ref\LangCardsDomain.dll
+C:\Users\heras\RiderProjects\WebApplication1\LangCardsDomain\obj\Debug\net8.0\LangCardsDomain.sourcelink.json
+C:\Users\heras\RiderProjects\WebApplication1\LangCardsDomain\obj\Debug\net8.0\LangCardsDomain.csproj.AssemblyReference.cache

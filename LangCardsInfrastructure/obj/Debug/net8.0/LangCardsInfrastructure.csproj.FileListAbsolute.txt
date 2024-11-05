@@ -13,3 +13,4 @@ C:\Users\heras\RiderProjects\WebApplication1\LangCardsInfrastructure\obj\Debug\n
 C:\Users\heras\RiderProjects\WebApplication1\LangCardsInfrastructure\obj\Debug\net8.0\refint\LangCardsInfrastructure.dll
 C:\Users\heras\RiderProjects\WebApplication1\LangCardsInfrastructure\obj\Debug\net8.0\LangCardsInfrastructure.pdb
 C:\Users\heras\RiderProjects\WebApplication1\LangCardsInfrastructure\obj\Debug\net8.0\ref\LangCardsInfrastructure.dll
+C:\Users\heras\RiderProjects\WebApplication1\LangCardsInfrastructure\obj\Debug\net8.0\LangCardsInfrastructure.sourcelink.json

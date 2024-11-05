@@ -51,3 +51,4 @@ C:\Users\heras\RiderProjects\WebApplication1\LangCardsAPI\obj\Debug\net8.0\refin
 C:\Users\heras\RiderProjects\WebApplication1\LangCardsAPI\obj\Debug\net8.0\LangCardsAPI.pdb
 C:\Users\heras\RiderProjects\WebApplication1\LangCardsAPI\obj\Debug\net8.0\LangCardsAPI.genruntimeconfig.cache
 C:\Users\heras\RiderProjects\WebApplication1\LangCardsAPI\obj\Debug\net8.0\ref\LangCardsAPI.dll
+C:\Users\heras\RiderProjects\WebApplication1\LangCardsAPI\obj\Debug\net8.0\LangCardsAPI.sourcelink.json

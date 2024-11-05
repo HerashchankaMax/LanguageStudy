@@ -1,16 +1,18 @@
 ﻿using LangCardsApplication.Requests;
+using LangCardsDomain.IRepositories;
 using LangCardsDomain.Models;
-using LangCardsPersistence.Repositories;
 
 namespace LangCardsApplication;
 
 public class CardsManipulationManager
 {
-    private readonly FlashCardsRepository _cardRepository;
+    private readonly IRepository<FlashCardEntity> _cardRepository;
+    private readonly IRepository<WordEntity> _wordRepository;
 
-    public CardsManipulationManager(FlashCardsRepository cardRepository)
+    public CardsManipulationManager(IRepository<FlashCardEntity> cardRepository, IRepository<WordEntity> wordRepository)
     {
         _cardRepository = cardRepository;
+        _wordRepository = wordRepository;
     }
 
     public async Task<IEnumerable<FlashCardEntity>> GetCardsAsync()
@@ -26,21 +28,22 @@ public class CardsManipulationManager
 
     public async Task<FlashCardEntity?> CreateCardAsync(CreateCardCommandRequest commandRequest)
     {
-        var newCard = new FlashCardEntity(commandRequest.OriginalWord, commandRequest.TranslatedWord );
+        var existingWord = await _wordRepository.GetByIdAsync(commandRequest.Word.Id);
+        var responseWord = commandRequest.Word;
+        if (existingWord != null)
+        {
+            responseWord = existingWord;
+        }
+        var newCard = new FlashCardEntity(responseWord);
         return await _cardRepository.Create(newCard);
     }
     public async Task<FlashCardEntity?> UpdateCardAsync(CreateCardCommandRequest commandRequest, Guid cardId)
     {
-
         var updatingCard = await _cardRepository.GetByIdAsync(cardId);
         if(updatingCard == null)
             throw new ArgumentException(nameof(cardId));
         
-       updatingCard.OriginalWord.UpdateDefinition(commandRequest.OriginalWord.Definition);
-       updatingCard.OriginalWord.UpdateValue(commandRequest.OriginalWord.Value);
-        
-       updatingCard.TranslatedWord.UpdateDefinition(commandRequest.TranslatedWord.Definition);
-       updatingCard.TranslatedWord.UpdateValue(commandRequest.TranslatedWord.Value);
+        updatingCard.UpdateWord(commandRequest.Word); 
        
         return await _cardRepository.Update(cardId, updatingCard);
     }

@@ -123,6 +123,9 @@
         }
       },
       "LangCardsDomain/1.0.0": {
+        "dependencies": {
+          "MongoDB.Bson": "3.0.0"
+        },
         "runtime": {
           "LangCardsDomain.dll": {
             "assemblyVersion": "1.0.0",

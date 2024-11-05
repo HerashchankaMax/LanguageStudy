@@ -10,10 +10,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("2c6fd893-8a44-4321-ae8e-5c3cd32ff661")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("LangCardsAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e75f21fcf321548692c26d917b74346e544db3ed")]
 [assembly: System.Reflection.AssemblyProductAttribute("LangCardsAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LangCardsAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

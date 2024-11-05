@@ -10,7 +10,7 @@ public class WordsCardsRepository : IRepository<WordEntity>
 
     public WordsCardsRepository(CardsDbContext dbContext)
     {
-        _collection = dbContext.GetAllWords();
+        _collection = dbContext.GetAllWords().GetAwaiter().GetResult();
     }
 
     public async Task<WordEntity> Create(WordEntity flashCard)
@@ -38,7 +38,8 @@ public class WordsCardsRepository : IRepository<WordEntity>
         if(existing is null)
             throw new ArgumentNullException(nameof(flashCard));
         
-        await _collection.ReplaceOneAsync(card => card.Id == guid, flashCard);
+        var a = await _collection.ReplaceOneAsync(card => card.Id == guid, flashCard);
+        Console.WriteLine($"Replace one result {a.ModifiedCount}");
         return flashCard;
     }
 
