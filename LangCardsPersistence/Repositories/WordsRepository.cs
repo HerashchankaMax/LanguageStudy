@@ -1,15 +1,18 @@
 ﻿using LangCardsDomain.IRepositories;
 using LangCardsDomain.Models;
+using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
 
 namespace LangCardsPersistence.Repositories;
 
 public class WordsCardsRepository : IValuableRepository<WordEntity>
 {
+    private readonly ILogger<WordsCardsRepository> _logger;
     private readonly IMongoCollection<WordEntity> _collection;
 
-    public WordsCardsRepository(CardsDbContext dbContext)
+    public WordsCardsRepository(CardsDbContext dbContext, ILogger<WordsCardsRepository> logger)
     {
+        _logger = logger;
         _collection = dbContext.GetAllWords().GetAwaiter().GetResult();
     }
 
@@ -17,9 +20,16 @@ public class WordsCardsRepository : IValuableRepository<WordEntity>
     {
         if (flashCard is null)
             throw new ArgumentNullException(nameof(flashCard));
-        
+        try
+        {
          await _collection.InsertOneAsync(flashCard);
          return flashCard;
+        }
+        catch (Exception e)
+        {
+            _logger.LogError($"Failed to create word: {e}");
+            return null;
+        }
     }
 
     public async Task<List<WordEntity>> GetAllAsync()
@@ -29,23 +39,30 @@ public class WordsCardsRepository : IValuableRepository<WordEntity>
 
     public async Task<WordEntity> GetByIdAsync(Guid guid)
     {
-        return await _collection.Find(card => card.Id == guid).FirstOrDefaultAsync();
+        var result = await _collection.Find(card => card.Id == guid).FirstOrDefaultAsync();
+        _logger.LogInformation($"Found word: {result.Id}");
+        return result;
     }
 
     public async Task<WordEntity> Update(Guid guid, WordEntity flashCard)
     {
         var existing = await _collection.Find(card => card.Id == guid).FirstOrDefaultAsync();
         if(existing is null)
-            throw new ArgumentNullException(nameof(flashCard));
+            _logger.LogError($"Updating isn't possible, word with id: {guid} is not found");
         
-        var a = await _collection.ReplaceOneAsync(card => card.Id == guid, flashCard);
-        Console.WriteLine($"Replace one result {a.ModifiedCount}");
-        return flashCard;
+        var replacingResult = await _collection.ReplaceOneAsync(card => card.Id == guid, flashCard);
+        _logger.LogInformation($"Number of replaced word with id {guid} is {replacingResult.ModifiedCount}");
+        return await GetByIdAsync(flashCard.Id);
     }
 
     public async Task Delete(Guid guid)
     {
-        await _collection.DeleteOneAsync(card => card.Id == guid);
+        DeleteResult? result = await _collection.DeleteOneAsync(card => card.Id == guid);
+        if (result.DeletedCount == 0)
+        {
+            _logger.LogWarning($"Deletion of word with guid {guid} was not successful");
+        }
+        _logger.LogInformation($"Deleted word with id {guid}");
     }
 
     public async Task<IEnumerable<WordEntity>> FilterByValue(string searchTerm)
@@ -53,6 +70,8 @@ public class WordsCardsRepository : IValuableRepository<WordEntity>
         var result = await _collection.FindAsync(word =>
             string.Compare(word.Value, searchTerm, true) == 0 ||
             string.Compare(word.Definition, searchTerm, true) == 0);
-        return result.ToEnumerable();
+        var filterByValue = result.ToEnumerable();
+        _logger.LogInformation($"There are {filterByValue.Count()} with '{searchTerm}' in their content");
+        return filterByValue;
     }
 }

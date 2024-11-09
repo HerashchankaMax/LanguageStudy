@@ -63,10 +63,16 @@ public class CardsController : ControllerBase
     [HttpPut]
     public async Task<IActionResult> CreateUpdate([FromBody] UpdateCardRequest request, [FromQuery] Guid id)
     {
-        var updatingResult = await _cardsManipulationManager.UpdateCardAsync(request.WordId, id);
-        if (updatingResult != null)
+        try
         {
-            return Ok(updatingResult);
+            var updatingResult = await _cardsManipulationManager.UpdateCardAsync(request.WordId, id);
+            if (updatingResult != null)
+            {
+                return Ok(updatingResult);
+            }
+        }
+        catch (Exception e)
+        {
         }
         return BadRequest(); 
     }

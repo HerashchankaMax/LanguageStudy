@@ -19,7 +19,6 @@ public class WordsController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetWords()
     {
-        Console.WriteLine(22);
         var result = await _wordsManipulationManager.GetWordsAsync();
         return Ok(result);
     }
