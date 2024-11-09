@@ -1,7 +1,7 @@
 using LangCardsAPI.Requests;
+using LangCardsAPI.Services;
 using LangWordsApplication;
 using Microsoft.AspNetCore.Mvc;
-using WebApplication1.Services;
 
 namespace LangCardsAPI.Controllers;
 

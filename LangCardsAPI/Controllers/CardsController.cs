@@ -1,7 +1,7 @@
 using LangCardsAPI.Requests;
+using LangCardsAPI.Services;
 using LangCardsApplication;
 using Microsoft.AspNetCore.Mvc;
-using WebApplication1.Services;
 
 namespace LangCardsAPI.Controllers;
 
@@ -22,6 +22,22 @@ public class CardsController : ControllerBase
         var result = await _cardsManipulationManager.GetCardsAsync();
         return Ok(result);
     }
+
+    [HttpGet("searchTerm")]
+    public async Task<IActionResult> GetByValue(string value)
+    {
+        try
+        {
+            var result = await _cardsManipulationManager.GetFlashCardsByText(value);
+            return Ok(result);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return BadRequest();
+        }
+        
+    }
     
     [HttpGet("{id}")]
     public async Task<IActionResult> GetCard(Guid id)
@@ -34,7 +50,7 @@ public class CardsController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateCard(CreateCardRequest request)
+    public async Task<IActionResult> CreateCard([FromBody]CreateCardRequest request)
     {
         var creationResult = await _cardsManipulationManager.CreateCardAsync(request.ToCreateCommandRequest());
         if (creationResult != null)
@@ -44,10 +60,10 @@ public class CardsController : ControllerBase
         return BadRequest("qq"); 
     }
     
-    [HttpPut("{id}")]
-    public async Task<IActionResult> CreateUpdate(CreateCardRequest request, Guid id)
+    [HttpPut]
+    public async Task<IActionResult> CreateUpdate([FromBody] UpdateCardRequest request, [FromQuery] Guid id)
     {
-        var updatingResult = await _cardsManipulationManager.UpdateCardAsync(request.ToCreateCommandRequest(), id);
+        var updatingResult = await _cardsManipulationManager.UpdateCardAsync(request.WordId, id);
         if (updatingResult != null)
         {
             return Ok(updatingResult);
@@ -55,8 +71,8 @@ public class CardsController : ControllerBase
         return BadRequest(); 
     }
 
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteCard(Guid id)
+    [HttpDelete]
+    public async Task<IActionResult> DeleteCard([FromQuery] Guid id)
     {
         try
         {

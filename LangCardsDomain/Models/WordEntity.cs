@@ -21,4 +21,33 @@ public class WordEntity
    }
    public void UpdateValue(string newValue) => Value = newValue;
    public void UpdateDefinition(string newValue) => Definition = newValue;
+
+   public override bool Equals(object? o)
+   {
+      if (o is null || GetType() != o.GetType())
+      {
+         return false;
+      }
+
+      if (o is WordEntity word)
+      {
+         return word.Value == Value && word.Definition == Definition && word.Translation == Translation;
+      }
+      return false;
+   }
+
+   public override int GetHashCode()
+   {
+      return HashCode.Combine(Id, Value, Definition, Translation);
+   }
+
+   public static bool operator ==(WordEntity left, WordEntity right)
+   {
+      return Equals(left, right);
+   }
+
+   public static bool operator !=(WordEntity left, WordEntity right)
+   {
+      return !(left == right);
+   }
 }

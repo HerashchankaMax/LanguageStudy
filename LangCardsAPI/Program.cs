@@ -8,14 +8,13 @@ using LangWordsApplication;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
-using WebApplication1;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddSingleton<CardsDbContext>();
-builder.Services.AddSingleton<IRepository<WordEntity>, WordsCardsRepository>();
+builder.Services.AddSingleton<IValuableRepository<WordEntity>, WordsCardsRepository>();
 builder.Services.AddSingleton<IRepository<FlashCardEntity>, FlashCardsRepository>();
 builder.Services.AddTransient<WordsManipulationManager>();
 builder.Services.AddTransient<CardsManipulationManager>();

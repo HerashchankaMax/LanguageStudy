@@ -4,7 +4,7 @@ using MongoDB.Driver;
 
 namespace LangCardsPersistence.Repositories;
 
-public class WordsCardsRepository : IRepository<WordEntity>
+public class WordsCardsRepository : IValuableRepository<WordEntity>
 {
     private readonly IMongoCollection<WordEntity> _collection;
 
@@ -46,5 +46,13 @@ public class WordsCardsRepository : IRepository<WordEntity>
     public async Task Delete(Guid guid)
     {
         await _collection.DeleteOneAsync(card => card.Id == guid);
+    }
+
+    public async Task<IEnumerable<WordEntity>> FilterByValue(string searchTerm)
+    {
+        var result = await _collection.FindAsync(word =>
+            string.Compare(word.Value, searchTerm, true) == 0 ||
+            string.Compare(word.Definition, searchTerm, true) == 0);
+        return result.ToEnumerable();
     }
 }

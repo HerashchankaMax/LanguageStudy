@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LangCardsDomain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e75f21fcf321548692c26d917b74346e544db3ed")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2b6b3be863a98c45d95471b028eafc7fb97e85b3")]
 [assembly: System.Reflection.AssemblyProductAttribute("LangCardsDomain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LangCardsDomain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

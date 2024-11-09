@@ -20,9 +20,10 @@ public class FlashCardEntity
         WordId = originalWord.Id;
     }
 
-    public void UpdateWord(WordEntity originalWord)
+
+    public void UpdateWord(Guid originalWordId)
     {
-        WordId = originalWord.Id;
+        WordId = originalWordId;
         DateUpdated = DateTime.Now;
     }
 }

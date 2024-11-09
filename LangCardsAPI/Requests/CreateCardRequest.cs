@@ -1,5 +1,6 @@
+using LangCardsApplication.Requests;
 using LangCardsDomain.Models;
 
 namespace LangCardsAPI.Requests;
 
-public record CreateCardRequest(WordEntity OriginalWord, WordEntity TranslatedWord);
+public record CreateCardRequest(Guid WordId, CreateWordCommandRequest CreateWord);

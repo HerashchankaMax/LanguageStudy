@@ -8,7 +8,7 @@ public class WordsManipulationManager
 {
     private readonly IRepository<WordEntity> _wordRepository;
 
-    public WordsManipulationManager( IRepository<WordEntity> wordRepository)
+    public WordsManipulationManager( IValuableRepository<WordEntity> wordRepository)
     {
         _wordRepository = wordRepository;
     }
