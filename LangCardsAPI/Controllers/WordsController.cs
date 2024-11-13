@@ -1,6 +1,7 @@
 using LangCardsAPI.Requests;
 using LangCardsAPI.Services;
 using LangWordsApplication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LangCardsAPI.Controllers;
@@ -17,6 +18,7 @@ public class WordsController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize]
     public async Task<IActionResult> GetWords()
     {
         var result = await _wordsManipulationManager.GetWordsAsync();

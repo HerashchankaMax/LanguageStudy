@@ -1,34 +1,23 @@
-using LangCardsAPI;
+using LangCardsAPI.Services;
 using LangCardsApplication;
-using LangCardsDomain.IRepositories;
 using LangCardsDomain.Models;
 using LangCardsPersistence;
-using LangCardsPersistence.Repositories;
 using LangWordsApplication;
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization;
-using MongoDB.Bson.Serialization.Serializers;using Serilog;
+using Microsoft.AspNetCore.Identity;
+using Serilog;
 using Serilog.Context;
 
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+builder.ConfigureLogger();
 
-// Add services to the container.
-builder.Services.AddControllers();
-builder.Services.AddSingleton<CardsDbContext>();
-builder.Services.AddSingleton<IValuableRepository<WordEntity>, WordsCardsRepository>();
-builder.Services.AddSingleton<IRepository<FlashCardEntity>, FlashCardsRepository>();
+builder.Services.ConfigureControllers(builder.Configuration);
+builder.Services.AddScoped<TokenService>();
+builder.Services.AddCardDataBase(builder.Configuration);
 builder.Services.AddTransient<WordsManipulationManager>();
 builder.Services.AddTransient<CardsManipulationManager>();
-BsonSerializer.RegisterSerializer(typeof(Guid), new GuidSerializer(GuidRepresentation.Standard));
-
-Log.Logger = new LoggerConfiguration()
-    .MinimumLevel.Debug()
-    .Enrich.FromLogContext()
-    .Enrich.WithProperty("Application", "LangCardsAPI")
-    .WriteTo.Console()
-    .WriteTo.File("logs/log-.txt", rollingInterval: RollingInterval.Day)
-    .CreateLogger();
-builder.Host.UseSerilog();
+builder.Services.AddIdentityContext(builder.Configuration);
+builder.Services.ConfigureIdentity();
+builder.Services.ConfigureAuthentication(builder.Configuration);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -42,12 +31,13 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 app.Use(async (context, next) =>
 {
     var correlationId = Guid.NewGuid().ToString();
-    LogContext.PushProperty("CorrelationId", correlationId);  // Adds CorrelationId to each log in this request
+    LogContext.PushProperty("CorrelationId", correlationId); // Adds CorrelationId to each log in this request
     await next.Invoke();
 });
 
@@ -58,8 +48,21 @@ app.Use(async (context, next) =>
         var userId = context.User.FindFirst("sub")?.Value ?? "unknown";
         LogContext.PushProperty("UserId", userId);
     }
+
     await next.Invoke();
 });
 
+try
+{
+    using var scope = app.Services.CreateScope();
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<IdentityContext>();
+    var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+    await DataSeedService.SeedData(context, userManager);
+}
+catch (Exception e)
+{
+    Log.Error(e, "An error occurred while seeding the database.");
+}
 
 app.Run();
