@@ -1,0 +1,116 @@
+html {
+    font-family: "Roboto Light", "Yu Gothic UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+}
+
+
+html, body {
+    height: 100%;
+    margin: 0;
+    background-color: #F5F5F5;
+    color : #1C1C1C;
+}
+.html .textColor{}
+
+.footer {
+    width: 100%;
+    height: 50px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-image: linear-gradient(to right, #2C3E50, #34495E, #2980B9, #3498DB);
+    align-content: center;
+    text-align: center;
+}
+
+.menu {
+    height: 60px;
+}
+
+.menu .container {
+    display: flex;
+    align-items: center;
+}
+
+.menu .item {
+    margin: 0;
+    padding: 0;
+}
+
+.menu .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    position: relative;
+}
+.ui.inverted.menu{
+    background-image: linear-gradient(to right, #2C3E50, #34495E, #2980B9, #3498DB)
+}
+
+.menu .button {
+    height: 100%;
+    width: 100%;
+    background-color: #5DADE2;
+    opacity: 100%;
+    border: none;
+    border-radius: 0px; /* Rounded corners */
+    cursor: pointer;
+}
+.buttonContainer{
+    display: flex;
+    height: 100%;
+    padding: 0;
+}
+.menu .button.CustomNavButton
+{
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+    cursor: pointer;
+    align-items: center;
+}
+.menu .button:hover {
+    background-color: #0056b3; /* Darker shade for hover effect */
+}
+.authorization-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-left: auto }
+
+.right-aligned {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+::selection {
+    color: #F4D03F;
+    background-color: #2C3E50;
+}
+.slider-container {
+    width: 100%;
+}
+.slick-slide{
+    display: flex;
+    background-color: #2C3E50;
+    vertical-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.ui.card.collection-details{
+    width: 100%;
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.slick-arrow.slick-next::before {
+    color: #3498DB;
+    font-size: 1.5rem;
+}
+.slick-arrow.slick-prev::before {
+    color: #3498DB;
+    font-size: 1.5rem;
+}
