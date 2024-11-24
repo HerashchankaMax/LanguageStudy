@@ -24,8 +24,8 @@ public static class DataAccessService
     {
         BsonSerializer.RegisterSerializer(typeof(Guid), new GuidSerializer(GuidRepresentation.Standard));
         services.AddSingleton<CardsDbContext>();
-        services.AddSingleton<IValuableRepository<WordEntity>, WordsCardsRepository>();
-        services.AddSingleton<IRepository<FlashCardEntity>, FlashCardsRepository>();
+        services.AddScoped<IValuableRepository<WordEntity>, WordsRepository>();
+        services.AddScoped<IValuableRepository<CollectionEntity>, CollectionsRepository>();
         return services;
     }
 }

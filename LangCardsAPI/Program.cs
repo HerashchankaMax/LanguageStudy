@@ -7,14 +7,14 @@ using Microsoft.AspNetCore.Identity;
 using Serilog;
 using Serilog.Context;
 
-WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(args);
 builder.ConfigureLogger();
 
 builder.Services.ConfigureControllers(builder.Configuration);
 builder.Services.AddScoped<TokenService>();
 builder.Services.AddCardDataBase(builder.Configuration);
 builder.Services.AddTransient<WordsManipulationManager>();
-builder.Services.AddTransient<CardsManipulationManager>();
+builder.Services.AddTransient<CollectionsManipulationManager>();
 builder.Services.AddIdentityContext(builder.Configuration);
 builder.Services.ConfigureIdentity();
 builder.Services.ConfigureAuthentication(builder.Configuration);
