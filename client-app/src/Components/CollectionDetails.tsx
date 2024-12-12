@@ -7,17 +7,14 @@ interface Props {
 
 function CollectionDetails(props: Props) {
     const { collection } = props;
-    const collectionLength = collection.cards.length;
+    const collectionLength = collection.wordGuids.length;
 
     return (
         <Card className='collection-details'>
             <CardContent>
-                <CardHeader as="h1">{collection.collectionName}</CardHeader>
+                <CardHeader as="h1">{collection.name}</CardHeader>
                 <CardDescription>
                     Number of cards in collection: {collectionLength}
-                </CardDescription>
-                <CardDescription>
-                    Last update: {collection.cards[0]?.dateModified.toLocaleDateString() || "N/A"}
                 </CardDescription>
             </CardContent>
         </Card>

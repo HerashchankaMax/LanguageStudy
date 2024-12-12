@@ -53,7 +53,6 @@ html, body {
     background-color: #5DADE2;
     opacity: 100%;
     border: none;
-    border-radius: 0px; /* Rounded corners */
     cursor: pointer;
 }
 .buttonContainer{
@@ -113,4 +112,52 @@ html, body {
 .slick-arrow.slick-prev::before {
     color: #3498DB;
     font-size: 1.5rem;
+}
+
+
+.login-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-column {
+    max-width: 450px;
+    width: 100%;
+}
+
+.login-header {
+    color: #008080;
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.login-form {
+    width: 100%;
+}
+
+.login-segment {
+    padding: 2em;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-input {
+    margin-bottom: 1em;
+}
+
+.login-button {
+    background-color: #008080;
+    color: #fff;
+    width: 100%;
+    padding: 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-button:hover {
+    background-color: #006666;
 }

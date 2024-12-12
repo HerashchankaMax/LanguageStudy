@@ -1,26 +1,41 @@
 import {Button} from "semantic-ui-react";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 
 const Authorization  = () => {
-    const [auth, setAuth] = useState(false)
-    const [userName, setUserName] = useState('Herashchanka Maksim')
+    const [userName, setUserName] = useState('')
+    const navigate = useNavigate();
+    useEffect(() => {
+
+        const token  = localStorage.getItem('authtoken');
+        setUserName( localStorage.getItem('userName') || '');
+        console.log(`got username ${userName}`)
+        if(token){
+            setUserName(userName);}
+    }, []);
+    useEffect(() => {
+        setUserName( localStorage.getItem('userName') || '');
+    }, [localStorage.getItem('userName')]);
 
     function Login() {
-        setAuth(true);
+        navigate('/login');
     }
 
     function Register() {
-        setAuth(true);
+        navigate('/register');
     }
 
     function LogOut() {
-        setAuth(false);
+        localStorage.removeItem('authToken');
+        localStorage.removeItem('userName');
+        setUserName('');
+        navigate('/');
     }
 
     return (
         <div>
-            {!auth ?
+            {userName.length == 0 ?
                 (
                     <div className='buttonContainer'>
                         <Button className= 'CustomNavButton'  onClick={Login}>LogIn</Button>

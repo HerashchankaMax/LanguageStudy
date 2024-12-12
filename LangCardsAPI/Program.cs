@@ -34,6 +34,9 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+app.UseCors(builder => { builder.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000"); });
+;
+;
 app.Use(async (context, next) =>
 {
     var correlationId = Guid.NewGuid().ToString();

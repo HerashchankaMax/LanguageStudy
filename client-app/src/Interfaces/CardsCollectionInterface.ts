@@ -1,8 +1,7 @@
-import {CardInterface} from "./CardInterface.ts";
 
-export interface CardsCollectionInterface{
-    collectionName: string;
-    cards : CardInterface[]
-    modifyingDate : Date;
-    totalViews : number;
+export interface CardsCollectionInterface {
+    id: string;
+    name: string;
+    wordGuids: string[];
+    description: string | null;
 }

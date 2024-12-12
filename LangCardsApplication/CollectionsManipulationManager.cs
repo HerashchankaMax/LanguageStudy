@@ -16,9 +16,9 @@ public class CollectionsManipulationManager
 
     public CollectionsManipulationManager(
         IValuableRepository<CollectionEntity> collectionsRepository,
-        IValuableRepository<WordEntity> wordRepository,
         WordsManipulationManager wordsManipulationManager,
-        ILogger<CollectionsManipulationManager> logger)
+        ILogger<CollectionsManipulationManager> logger
+    )
     {
         _collectionsRepository = collectionsRepository as CollectionsRepository;
         _wordsManipulationManager = wordsManipulationManager;
