@@ -1,0 +1,38 @@
+services:
+  langcardsapi:
+    build:
+      context: .
+      dockerfile: LangCardsAPI/Dockerfile
+    ports:
+      - "5000:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on:
+      - langcardspersistence
+    networks:
+      - langcards-network
+
+  langcardspersistence:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - langcards-network
+
+  client-app:
+    build:
+      context: ./client-app
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    networks:
+      - langcards-network
+
+volumes:
+  mongo-data:
+
+networks:
+  langcards-network:
+    driver: bridge
