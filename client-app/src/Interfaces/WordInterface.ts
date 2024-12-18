@@ -1,4 +1,4 @@
-export interface CardInterface   {
+export interface WordInterface   {
     id: string
     value: string
     translation: string

@@ -1,13 +1,13 @@
 import { Card, CardContent, CardDescription, CardHeader } from "semantic-ui-react";
-import { CardsCollectionInterface } from "../Interfaces/CardsCollectionInterface.ts";
+import { WordsCollectionInterface } from "../Interfaces/WordsCollectionInterface";
 
 interface Props {
-    collection: CardsCollectionInterface;
+    collection: WordsCollectionInterface;
 }
 
 function CollectionDetails(props: Props) {
     const { collection } = props;
-    const collectionLength = collection.wordGuids.length;
+    const collectionLength = collection.words.length;
 
     return (
         <Card className='collection-details'>

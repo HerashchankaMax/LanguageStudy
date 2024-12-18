@@ -1,20 +1,20 @@
 import Slider from "react-slick";
-import {CardsCollectionInterface} from "../Interfaces/CardsCollectionInterface.ts";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import CollectionDetails from "./CollectionDetails.tsx";
+import { WordsCollectionInterface } from "../Interfaces/WordsCollectionInterface.ts";
 
 
 interface Props {
-    items: CardsCollectionInterface[];
+    items: WordsCollectionInterface[];
 }
 
 interface Props {
-    items: CardsCollectionInterface[];
-    onActiveCollectionChange: (collection: CardsCollectionInterface) => void;
+    items: WordsCollectionInterface[];
+    onActiveCollectionChange: (collection: WordsCollectionInterface) => void;
 
 }
-function CollectionSlider({items, onActiveCollectionChange}: Props) {
+function CollectionsSlider({items, onActiveCollectionChange}: Props) {
     const settings = {
         dots: true,
         fade: true,
@@ -35,5 +35,5 @@ function CollectionSlider({items, onActiveCollectionChange}: Props) {
     );
 }
 
-export default CollectionSlider;
+export default CollectionsSlider;
 

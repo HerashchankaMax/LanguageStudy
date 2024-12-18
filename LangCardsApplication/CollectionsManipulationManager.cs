@@ -32,9 +32,33 @@ public class CollectionsManipulationManager
         return collections;
     }
 
-    public async Task<IEnumerable<CollectionEntity>> GetCollections()
+    public async Task<IEnumerable<CollectionWithWordsEntity>> GetCollections()
     {
-        return await _collectionsRepository.GetAllAsync();
+        var collections = await _collectionsRepository.GetAllAsync() ?? new List<CollectionEntity>();
+        _logger.LogInformation("Found {collectionsCount} collections", collections.Count());
+        var tasks = collections.Select(async collection =>
+        {
+            try
+            {
+                _logger.LogInformation("Started to get words for collection {collectionName}", collection?.Name);
+                if (collection == null || collection.WordGuids == null)
+                    return null;
+                var words = await Task.WhenAll(
+                    collection?.WordGuids?.Select(id =>
+                        _wordsManipulationManager.GetWordByIdAsync(id)));
+                words.ToList().ForEach(w => _logger.LogInformation("Word {word} has been retrieved", w?.Value));
+                _logger.LogInformation("Collection {collectionName} has {wordsCount} words",
+                    collection?.Name, words.Count());
+                return new CollectionWithWordsEntity(collection.Name, words.Where(x => x != null).ToList());
+            }
+            catch (Exception e)
+            {
+                _logger.LogError("Failed to get words for collection {collectionName}: {e}", collection?.Name, e);
+                return null;
+            }
+        });
+        var result = await Task.WhenAll(tasks);
+        return result.Where(r => r != null);
     }
 
     public async Task<CollectionEntity?> GetCollectionByIdAsync(Guid cardId)

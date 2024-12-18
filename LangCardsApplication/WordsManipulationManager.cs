@@ -28,7 +28,8 @@ public class WordsManipulationManager
     public async Task<WordEntity?> GetWordByIdAsync(Guid wordId)
     {
         var result = await _wordRepository.GetByIdAsync(wordId);
-        if (result == null) _logger.LogInformation($"Word with id - {wordId} is not found in database");
+        if (result == null)
+            _logger.LogInformation($"Word with id - {wordId} is not found in database");
         return result;
     }
 

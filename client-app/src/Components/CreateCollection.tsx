@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { Grid, Button } from 'semantic-ui-react';
-import { CardsCollectionInterface } from '../Interfaces/CardsCollectionInterface';
 import InputRow from './InputRow';
+import { WordsCollectionInterface } from '../Interfaces/WordsCollectionInterface';
 
 interface Props {
-    collection?: CardsCollectionInterface;
+    collection?: WordsCollectionInterface;
 }
 
 export interface RowData {
@@ -14,18 +14,31 @@ export interface RowData {
 }
 
 const CreateCollection: React.FC<Props> = ({ collection }) => {
-    const initialRows = collection
-        ? collection.wordGuids.map((guid) => ({ word: guid, translation: '', definition: '' }))
-        : [{ word: '', translation: '', definition: '' }];
 
-    const [rows, setRows] = useState<RowData[]>(initialRows);
+    const [rows, setRows] = useState<RowData[]>([{"word" : '', "translation" : '', "definition" : ''}]);
 
     const handleInputChange = (index: number, field: string, value: string) => {
         const newRows = [...rows];
-        newRows[index][field] = value;
+        newRows[index] = { ...newRows[index], [field]: value };
         setRows(newRows);
     };
 
+    console.log(collection?.words.length);
+    useEffect(() => {
+        if (collection) {
+            const mappedRows = collection.words.map((word) => {
+                return {
+                    word: word.value,
+                    translation: word.translation,
+                    definition: word.definition
+                };
+            })
+            setRows(mappedRows);
+        }
+        else {
+            setRows([{ word: '', translation: '', definition: '' }]);
+        }
+    }, [collection]);
     const addNewRow = () => {
         setRows([...rows, { word: '', translation: '', definition: '' }]);
     };

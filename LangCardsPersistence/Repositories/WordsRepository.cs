@@ -24,7 +24,10 @@ public class WordsRepository : IValuableRepository<WordEntity>
     public async Task<WordEntity> GetByIdAsync(Guid guid)
     {
         var result = await _collection.Find(card => card.Id == guid).FirstOrDefaultAsync();
-        _logger.LogInformation($"Found word: {result.Id}");
+        if (result != null)
+            _logger.LogInformation($"Found word: {result.Id}");
+        else
+            _logger.LogWarning($"Word with id {guid} is not found");
         return result;
     }
 

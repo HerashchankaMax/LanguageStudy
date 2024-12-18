@@ -14,10 +14,10 @@ public class CollectionEntity
 
     [BsonId]
     [BsonRepresentation(BsonType.String)]
-    public Guid Id { get; private set; }
+    public Guid Id { get; protected set; }
 
-    public string Name { get; private set; }
-    public List<Guid>? WordGuids { get; private set; }
+    public string Name { get; protected set; }
+    public List<Guid>? WordGuids { get; protected set; }
     public string Description { get; set; }
 
     public void AddWord(WordEntity word)
